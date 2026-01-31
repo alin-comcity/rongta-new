@@ -135,50 +135,54 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      customername: null,
-      email: null,
-      message: null,
-      honeyPot: false,
-      showThanks: false,
-    };
-  },
+<script setup>
+import { ref } from "vue";
+import { useHead } from "#imports";
 
-  methods: {
-    sendMail() {
-      this.$axios
-        .post("https://submit-form.com/vl8xicmc", {
-          name: this.customername,
-          email: this.email,
-          message: this.message,
-          _honeypot: this.honeyPot,
-        })
-        .then((response) => {
-          console.log(response.data);
-          this.showThanks = true;
-        });
+// SEO
+useHead({
+  title: "Rongta Bangladesh | Contact Us",
+  meta: [
+    { charset: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    {
+      hid: "description",
+      name: "Send us a mail",
+      content: "We are here to hear from you",
     },
+  ],
+  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
+});
 
-    toggleThanks() {
-      this.showThanks = !this.showThanks;
-    },
-  },
+// form state
+const customername = ref("");
+const email = ref("");
+const message = ref("");
+const honeyPot = ref(false);
+const showThanks = ref(false);
 
-  head: {
-    title: "Rongta Bangladesh | Contact Us",
-    meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "Send us a mail",
-        content: "We are here to hear from you",
+// send mail function
+const sendMail = async () => {
+  try {
+    const response = await $fetch("https://submit-form.com/vl8xicmc", {
+      method: "POST",
+      body: {
+        name: customername.value,
+        email: email.value,
+        message: message.value,
+        _honeypot: honeyPot.value,
       },
-    ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
-  },
+    });
+
+    console.log(response);
+    showThanks.value = true;
+  } catch (err) {
+    console.error("Form submission error:", err);
+  }
+};
+
+// toggle thanks popup
+const toggleThanks = () => {
+  showThanks.value = !showThanks.value;
 };
 </script>

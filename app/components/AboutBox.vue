@@ -32,33 +32,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      abouts: [
-        {
-          year: "2009",
-          cname: "Established",
-          icon: "/calendar.png",
-        },
-        {
-          year: "20000+",
-          cname: "Area",
-          icon: "/building.png",
-        },
-        {
-          year: "5000+",
-          cname: "Distributors",
-          icon: "/flag.png",
-        },
-        {
-          year: "600+",
-          cname: "Customers (Mil)",
-          icon: "/user.png",
-        },
-      ],
-    };
+<script setup>
+import { ref } from "vue";
+
+const abouts = ref([
+  {
+    year: "2009",
+    cname: "Established",
+    icon: "/calendar.png",
   },
-};
+  {
+    year: "20000+",
+    cname: "Area",
+    icon: "/building.png",
+  },
+  {
+    year: "5000+",
+    cname: "Distributors",
+    icon: "/flag.png",
+  },
+  {
+    year: "600+",
+    cname: "Customers (Mil)",
+    icon: "/user.png",
+  },
+]);
 </script>

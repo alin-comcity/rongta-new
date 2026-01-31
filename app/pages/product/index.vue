@@ -2,13 +2,23 @@
   <div class="container mx-auto">
     <div class="flex flex-col items-center mt-8">
       <h2 class="text-3xl font-bold uppercase tracking-wider">All Products</h2>
-
       <img src="/bt-i.png" class="mt-4" />
     </div>
 
+    <!-- Loader -->
+    <div v-if="pending" class="text-center py-12 text-gray-500">
+      Loading products...
+    </div>
+
+    <!-- Error -->
+    <div v-if="error" class="text-center py-12 text-red-500">
+      Failed to load products.
+    </div>
+
+    <!-- Products Grid -->
     <div
+      v-if="products && products.length > 0"
       class="grid lg:grid-cols-4 grid-cols-1 gap-6 px-6 py-12"
-      v-if="products.length > 0"
     >
       <div
         class="border-4 border-gray-200 hover:border-rongta"
@@ -24,38 +34,36 @@
       </div>
     </div>
 
-    <div v-else class="text-center py-12 text-gray-500">No products found.</div>
+    <!-- No products -->
+    <div
+      v-else-if="!pending && (!products || products.length === 0)"
+      class="text-center py-12 text-gray-500"
+    >
+      No products found.
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import axios from "axios";
+import { ref, computed } from "vue";
 
-// reactive variables
-const products = ref([]);
+// Variables
 const category = ref("thermal-printer");
 const cat_id = ref([57, 9, 56]);
 
-// fetch data function
-const getData = async () => {
-  try {
-    const response = await axios.get(
-      "https://admindash.comcitybd.com/api/brands/Rongta/20",
-      {
-        params: { id: cat_id.value },
-      },
-    );
-    console.log(response.data);
-    products.value = response.data.data;
-  } catch (err) {
-    console.error("API Error:", err);
-    products.value = [];
-  }
-};
+// Convert params to query string manually
+const queryString = new URLSearchParams();
+cat_id.value.forEach((id) => queryString.append("id", id));
 
-// fetch data on mounted
-onMounted(() => {
-  getData();
-});
+const { data, pending, error } = await useFetch(
+  `https://admindash.comcitybd.com/api/brands/Rongta/20?`,
+  {
+    default: () => [],
+    method: "GET",
+    server: false,
+  },
+);
+
+// Reactive products
+const products = computed(() => data.value?.data || []);
 </script>

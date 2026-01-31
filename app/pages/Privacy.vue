@@ -28,7 +28,7 @@
     </p>
 
     <p class="py-4">
-      – “Cookies” are data files that are placed on your device or computer and
+      - “Cookies” are data files that are placed on your device or computer and
       often include an anonymous unique identifier. For more information about
       cookies, and how to disable cookies, visit http://www.allaboutcookies.org.
     </p>
@@ -129,21 +129,21 @@
   </div>
 </template>
 
-<script>
-export default {
-  head: {
-    title: "Rongta Bangladesh | Privacy Policy",
-    meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "Privacy Policy of Rongta BD Website",
-        content:
-          "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from rongta.com.bd",
-      },
-    ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
-  },
-};
+<script setup>
+import { useHead } from "#imports";
+
+useHead({
+  title: "Rongta Bangladesh | Privacy Policy",
+  meta: [
+    { charset: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    {
+      hid: "description",
+      name: "Privacy Policy of Rongta BD Website",
+      content:
+        "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from rongta.com.bd",
+    },
+  ],
+  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
+});
 </script>

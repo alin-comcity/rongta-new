@@ -15,12 +15,12 @@
       <div
         class="border-4 border-gray-200 hover:border-rongta"
         v-for="product in products"
-        :key="product.slug"
+        :key="product?.slug"
       >
         <NuxtLink :to="`/product/${product.slug}`">
           <img :src="product.photo" :alt="product.name" style="width: 250px" />
           <p class="text-rongtatext text-sm font-semibold px-8 py-2">
-            {{ product.name }}
+            {{ product?.name }}
           </p>
         </NuxtLink>
       </div>
@@ -31,29 +31,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useFetch } from "#app"; // Nuxt 4 built-in fetch composable
+import { ref, computed } from "vue";
 
-const products = ref([]);
-const cat_id = [57];
+// Variables
+const category = ref("thermal-printer");
+const cat_id = ref([57, 9, 56]);
 
-async function getData() {
-  const { data, error } = await useFetch(
-    "https://admindash.comcitybd.com/api/brands/Rongta/4",
-    {
-      params: { id: cat_id },
-    },
-  );
+// Convert params to query string manually
+const queryString = new URLSearchParams();
+cat_id.value.forEach((id) => queryString.append("id", id));
 
-  if (error.value) {
-    console.error("API Error:", error.value);
-    products.value = [];
-  } else {
-    products.value = data.value?.data || [];
-  }
-}
+const { data, pending, error } = await useFetch(
+  `https://admindash.comcitybd.com/api/brands/Rongta/4?`,
+  {
+    default: () => [],
+    method: "GET",
+    server: false,
+  },
+);
 
-onMounted(() => {
-  getData();
-});
+// Reactive products
+const products = computed(() => data.value?.data || []);
 </script>

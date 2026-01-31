@@ -27,8 +27,9 @@
           />
 
           <div class="mt-8">
+            <!-- old used: https://comcitybd.com/product/${slug} -->
             <a
-              :href="`https://comcitybd.com/product/${slug}`"
+              :href="`https://admindash.comcitybd.com/api/product/${slug}`"
               class="bg-rongta text-white px-6 py-3 hover:bg-gray-700"
               target="_blank"
             >
@@ -59,11 +60,11 @@
     <!-- Tab Content -->
     <div class="px-8 container mx-auto">
       <div v-if="currentTab == 1" class="tabpanel">
-        <div class="px-10 py-6" v-html="product.details"></div>
+        <div class="px-10 py-6" v-html="product?.details"></div>
       </div>
 
       <div v-if="currentTab === 2">
-        <div class="px-10 py-6" v-html="product.short"></div>
+        <div class="px-10 py-6" v-html="product?.short"></div>
       </div>
     </div>
   </div>
@@ -74,16 +75,13 @@ import { ref, watch } from "vue";
 import { useRoute, useHead } from "#imports";
 import { useFetch } from "#app";
 
-// route
 const route = useRoute();
 const slug = ref(route.params.slug);
 
-// state
 const product = ref(null);
 const loading = ref(false);
 const currentTab = ref(1);
 
-// SEO
 useHead(() => ({
   title: `Rongta | ${slug.value}`,
   meta: [
@@ -94,7 +92,6 @@ useHead(() => ({
   ],
 }));
 
-// fetch product
 const getProduct = async () => {
   loading.value = true;
 
@@ -115,7 +112,6 @@ const getProduct = async () => {
   loading.value = false;
 };
 
-// watch slug change
 watch(
   () => route.params.slug,
   (newSlug) => {
@@ -124,10 +120,8 @@ watch(
   },
 );
 
-// initial load
 getProduct();
 
-// tabs
 function selectTab(tab) {
   currentTab.value = tab;
 }
