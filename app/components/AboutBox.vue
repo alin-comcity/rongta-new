@@ -1,6 +1,6 @@
 <template>
   <div class="col-span-1">
-    <div class="bg-rongta opacity-95 h-full grid grid-flow-row">
+    <div class="bg-[#f08200] opacity-95 h-full grid grid-flow-row">
       <div class="flex justify-end flex-col px-6">
         <h2 class="text-white uppercase lg:text-3xl text-lg font-bold">
           About Rongta

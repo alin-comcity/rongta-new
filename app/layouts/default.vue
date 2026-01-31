@@ -1,19 +1,16 @@
 <template>
   <div>
-    <!-- <Header class="hidden lg:block" @custom-search="searchs" /> -->
-    <Header class="hidden lg:block" />
+    <Header class="hidden lg:block" @custom-search="searchs" />
     <Mobilenav class="block lg:hidden" />
     <slot />
     <Footer />
   </div>
 </template>
 
-<script setup>
+<script>
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
-</script>
 
-<script>
 export default {
   data() {
     return {
@@ -21,19 +18,19 @@ export default {
       mydata: "",
     };
   },
-  // created() {
-  //   this.$nuxt.$on("customSearch", ($event) => this.searchs($event));
-  // },
-  // methods: {
-  //   searchs(event) {
-  //     console.log(event);
-  //     this.$router.push({ path: `/search/${event}` });
-  //   },
+  created() {
+    // this.$nuxt.$on("customSearch", ($event) => this.searchs($event));
+  },
+  methods: {
+    searchs(event) {
+      console.log(event);
+      this.$router.push({ path: `/search/${event}` });
+    },
 
-  //   test(e) {
-  //     console.log(e);
-  //   },
-  // },
+    test(e) {
+      console.log(e);
+    },
+  },
 
   head: {
     title: "Rongta Bangladesh | Receipt & Thermal Printers",

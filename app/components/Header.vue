@@ -69,7 +69,7 @@
           v-if="showSearch"
         >
           <div class="col-span-6">
-            <!-- <form
+            <form
               class="inline"
               @submit.prevent="$nuxt.$emit('customSearch', query)"
             >
@@ -84,7 +84,7 @@
                   <img src="/search.svg" class="h-4" />
                 </button>
               </span>
-            </form> -->
+            </form>
           </div>
 
           <div class="col-span-1">
@@ -99,20 +99,20 @@
 </template>
 
 <script>
-// export default {
-//   emits: [],
-//   data() {
-//     return {
-//       showSearch: false,
-//       query: "",
-//       data: [],
-//     };
-//   },
+export default {
+  emits: [],
+  data() {
+    return {
+      showSearch: false,
+      query: "",
+      data: [],
+    };
+  },
 
-//   methods: {
-//     toggleSearch() {
-//       this.showSearch = !this.showSearch;
-//     },
-//   },
-// };
+  methods: {
+    toggleSearch() {
+      this.showSearch = !this.showSearch;
+    },
+  },
+};
 </script>
