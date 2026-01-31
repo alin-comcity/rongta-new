@@ -1,6 +1,6 @@
-# Nuxt Minimal Starter
+# Rongta (New version 2026)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+https://rongta.com.bd/
 
 ## Setup
 
