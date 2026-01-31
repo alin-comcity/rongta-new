@@ -79,7 +79,7 @@ function selectTab(tab) {
         </div>
 
         <div>
-          <h2 class="font-bold text-2xl text-rongtatext break-words">
+          <h2 class="font-bold text-2xl text-rongtatext wrap-break-word">
             {{ product.name }}
           </h2>
 

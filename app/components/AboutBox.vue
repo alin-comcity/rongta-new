@@ -1,3 +1,30 @@
+<script setup>
+import { ref } from "vue";
+
+const abouts = ref([
+  {
+    year: "2009",
+    cname: "Established",
+    icon: "/calendar.png",
+  },
+  {
+    year: "20000+",
+    cname: "Area",
+    icon: "/building.png",
+  },
+  {
+    year: "5000+",
+    cname: "Distributors",
+    icon: "/flag.png",
+  },
+  {
+    year: "600+",
+    cname: "Customers (Mil)",
+    icon: "/user.png",
+  },
+]);
+</script>
+
 <template>
   <div class="col-span-1">
     <div class="bg-[#f08200] opacity-95 h-full grid grid-flow-row">
@@ -31,30 +58,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-
-const abouts = ref([
-  {
-    year: "2009",
-    cname: "Established",
-    icon: "/calendar.png",
-  },
-  {
-    year: "20000+",
-    cname: "Area",
-    icon: "/building.png",
-  },
-  {
-    year: "5000+",
-    cname: "Distributors",
-    icon: "/flag.png",
-  },
-  {
-    year: "600+",
-    cname: "Customers (Mil)",
-    icon: "/user.png",
-  },
-]);
-</script>

@@ -1,3 +1,27 @@
+<script setup>
+import { ref, computed } from "vue";
+
+// Variables
+const category = ref("thermal-printer");
+const cat_id = ref([57, 9, 56]);
+
+// Convert params to query string manually
+const queryString = new URLSearchParams();
+cat_id.value.forEach((id) => queryString.append("id", id));
+
+const { data, pending, error } = await useFetch(
+  `https://admindash.comcitybd.com/api/brands/Rongta/4?`,
+  {
+    default: () => [],
+    method: "GET",
+    server: false,
+  },
+);
+
+// Reactive products
+const products = computed(() => data.value?.data || []);
+</script>
+
 <template>
   <div class="container mx-auto">
     <div class="flex flex-col items-center mt-8">
@@ -29,27 +53,3 @@
     <div v-else class="text-center py-12 text-gray-500">No products found.</div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from "vue";
-
-// Variables
-const category = ref("thermal-printer");
-const cat_id = ref([57, 9, 56]);
-
-// Convert params to query string manually
-const queryString = new URLSearchParams();
-cat_id.value.forEach((id) => queryString.append("id", id));
-
-const { data, pending, error } = await useFetch(
-  `https://admindash.comcitybd.com/api/brands/Rongta/4?`,
-  {
-    default: () => [],
-    method: "GET",
-    server: false,
-  },
-);
-
-// Reactive products
-const products = computed(() => data.value?.data || []);
-</script>

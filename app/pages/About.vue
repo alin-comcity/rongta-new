@@ -44,7 +44,6 @@ useHead({
       </p>
       <p class="py-4">
         Computer City Technologies Ltd. is the authorized distributor of Rongta
-        in Bangladesh.
       </p>
     </div>
   </div>
