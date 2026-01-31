@@ -1,3 +1,20 @@
+<script setup>
+useHead({
+  title: "Solution",
+  meta: [
+    { charset: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    {
+      hid: "description",
+      name: "Rongta Solution",
+      content:
+        "With Rongta products, you will get different types of solution for your business. Rongta offers product lines which are fit for your logistics",
+    },
+  ],
+  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
+});
+</script>
+
 <template>
   <div class="container mx-auto">
     <div class="flex flex-col items-center mt-8">
@@ -88,22 +105,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useHead } from "#imports";
-
-useHead({
-  title: "Rongta Bangladesh | Solution",
-  meta: [
-    { charset: "utf-8" },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-    {
-      hid: "description",
-      name: "Rongta Solution",
-      content:
-        "With Rongta products, you will get different types of solution for your business. Rongta offers product lines which are fit for your logistics",
-    },
-  ],
-  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
-});
-</script>

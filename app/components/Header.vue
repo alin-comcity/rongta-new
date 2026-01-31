@@ -1,3 +1,22 @@
+<script setup>
+const router = useRouter();
+const showSearch = ref(false);
+const query = ref("");
+const data = ref([]);
+
+const toggleSearch = () => {
+  showSearch.value = !showSearch.value;
+};
+
+const search = (event) => {
+  console.log(event);
+  if (event.trim() !== "") {
+    console.log("Search query submitted:", event);
+    router.push({ path: `/search/${event}` });
+  }
+};
+</script>
+
 <template>
   <div class="container mx-auto">
     <div class="grid grid-cols-12 h-24 px-8 relative">
@@ -69,10 +88,7 @@
           v-if="showSearch"
         >
           <div class="col-span-6">
-            <form
-              class="inline"
-              @submit.prevent="$nuxt.$emit('customSearch', query)"
-            >
+            <form class="inline" @submit.prevent="search(query)">
               <input
                 class="border px-2 rounded"
                 type="text"
@@ -97,22 +113,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  emits: [],
-  data() {
-    return {
-      showSearch: false,
-      query: "",
-      data: [],
-    };
-  },
-
-  methods: {
-    toggleSearch() {
-      this.showSearch = !this.showSearch;
-    },
-  },
-};
-</script>

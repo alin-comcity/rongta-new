@@ -1,14 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import tailwindcss from "@tailwindcss/vite";
-
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  css: ['./app/assets/css/main.css'],
-  srcDir: 'app/',    
-  vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+
+  site: {
+    name: "Rongta Bangladesh",
+    url: "https://rongta.com.bd",
+    description: "Rongta Bangladesh - Point of Sales Solution in Bangladesh",
   },
-})
+
+  modules: ["@nuxtjs/seo", "@nuxtjs/tailwindcss"],
+});

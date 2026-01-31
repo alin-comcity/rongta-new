@@ -1,3 +1,50 @@
+<script setup>
+useHead({
+  title: "Contact Us",
+  meta: [
+    { charset: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    {
+      hid: "description",
+      name: "Send us a mail",
+      content: "We are here to hear from you",
+    },
+  ],
+});
+
+// form state
+const customername = ref("");
+const email = ref("");
+const message = ref("");
+const honeyPot = ref(false);
+const showThanks = ref(false);
+
+// send mail function
+const sendMail = async () => {
+  try {
+    const response = await $fetch("https://submit-form.com/vl8xicmc", {
+      method: "POST",
+      body: {
+        name: customername.value,
+        email: email.value,
+        message: message.value,
+        _honeypot: honeyPot.value,
+      },
+    });
+
+    console.log(response);
+    showThanks.value = true;
+  } catch (err) {
+    console.error("Form submission error:", err);
+  }
+};
+
+// toggle thanks popup
+const toggleThanks = () => {
+  showThanks.value = !showThanks.value;
+};
+</script>
+
 <template>
   <div class="container mx-auto">
     <div class="flex flex-col items-center mt-8">
@@ -67,7 +114,7 @@
                 </div>
                 <div class="p-2 w-full">
                   <button
-                    class="flex mx-auto text-white bg-rongta border-0 py-2 px-8 focus:outline-none hover:bg-gray-700 rounded text-lg"
+                    class="flex mx-auto text-white bg-gray-700 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg"
                   >
                     Send
                   </button>
@@ -98,7 +145,7 @@
                   <button
                     @click="toggleThanks"
                     type="button"
-                    class="ml-auto -mx-1.5 -my-1.5 bg-blue-100 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex h-8 w-8 dark:bg-blue-200 dark:text-blue-600 dark:hover:bg-blue-300"
+                    class="ml-auto -mx-1.5 -my-1.5 bg-gray-100 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex h-8 w-8 dark:bg-blue-200 dark:text-blue-600 dark:hover:bg-blue-300"
                     data-collapse-toggle="alert-1"
                     aria-label="Close"
                   >
@@ -134,55 +181,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import { useHead } from "#imports";
-
-// SEO
-useHead({
-  title: "Rongta Bangladesh | Contact Us",
-  meta: [
-    { charset: "utf-8" },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-    {
-      hid: "description",
-      name: "Send us a mail",
-      content: "We are here to hear from you",
-    },
-  ],
-  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
-});
-
-// form state
-const customername = ref("");
-const email = ref("");
-const message = ref("");
-const honeyPot = ref(false);
-const showThanks = ref(false);
-
-// send mail function
-const sendMail = async () => {
-  try {
-    const response = await $fetch("https://submit-form.com/vl8xicmc", {
-      method: "POST",
-      body: {
-        name: customername.value,
-        email: email.value,
-        message: message.value,
-        _honeypot: honeyPot.value,
-      },
-    });
-
-    console.log(response);
-    showThanks.value = true;
-  } catch (err) {
-    console.error("Form submission error:", err);
-  }
-};
-
-// toggle thanks popup
-const toggleThanks = () => {
-  showThanks.value = !showThanks.value;
-};
-</script>

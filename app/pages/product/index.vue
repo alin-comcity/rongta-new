@@ -1,3 +1,32 @@
+<script setup>
+const category = ref("thermal-printer");
+const cat_id = ref([57, 9, 56]);
+
+const queryString = new URLSearchParams();
+cat_id.value.forEach((id) => queryString.append("id", id));
+
+const { data, pending, error } = await useFetch(
+  `https://admindash.comcitybd.com/api/brands/Rongta/20?`,
+  {
+    default: () => [],
+    method: "GET",
+    server: false,
+  },
+);
+
+const products = computed(() => data.value?.data || []);
+
+useHead(() => ({
+  title: `Products`,
+  meta: [
+    {
+      name: "description",
+      content: "Products page For Rongta",
+    },
+  ],
+}));
+</script>
+
 <template>
   <div class="container mx-auto">
     <div class="flex flex-col items-center mt-8">
@@ -26,7 +55,7 @@
         :key="product.slug"
       >
         <NuxtLink :to="`/product/${product.slug}`">
-          <img :src="product.photo" :alt="product.name" style="width: 250px" />
+          <img :src="product.photo" :alt="product.name" />
           <p class="text-rongtatext text-sm font-semibold px-8 py-2">
             {{ product.name }}
           </p>
@@ -43,27 +72,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, computed } from "vue";
-
-// Variables
-const category = ref("thermal-printer");
-const cat_id = ref([57, 9, 56]);
-
-// Convert params to query string manually
-const queryString = new URLSearchParams();
-cat_id.value.forEach((id) => queryString.append("id", id));
-
-const { data, pending, error } = await useFetch(
-  `https://admindash.comcitybd.com/api/brands/Rongta/20?`,
-  {
-    default: () => [],
-    method: "GET",
-    server: false,
-  },
-);
-
-// Reactive products
-const products = computed(() => data.value?.data || []);
-</script>

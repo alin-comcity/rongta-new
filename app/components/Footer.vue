@@ -1,64 +1,9 @@
 <template>
   <div>
     <div
-      style="background-image: url('/footer-bg.jpg')"
+      style="background-image: url(&quot;/footer-bg.jpg&quot;)"
       class="h-[480px] bg-cover bg-no-repeat bg-center bg-fixed grid grid-flow-row"
     >
-      <!-- Newsletter Section -->
-      <div class="mt-8 px-8 container mx-auto">
-        <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
-          <div class="flex gap-4 col-span-1 items-center">
-            <div>
-              <img src="/mail.png" class="w-16" />
-            </div>
-            <div>
-              <h2 class="lg:text-lg text-white text-sm uppercase font-bold">
-                Sign up for Newletter
-              </h2>
-              <p class="text-xs text-gray-300">
-                Wants To Get Latest Updates! Sign Up For Free
-              </p>
-            </div>
-          </div>
-
-          <div class="col-span-1 flex lg:justify-end justify-center">
-            <form method="post" @submit.prevent="sendMail">
-              <input
-                v-model="honeyPot"
-                type="checkbox"
-                style="display: none"
-                name="honeyPot"
-                tabindex="-1"
-                autocomplete="off"
-              />
-
-              <div class="flex">
-                <div class>
-                  <input
-                    required
-                    v-model="email"
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="bg-white w-44 border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
-                </div>
-
-                <div class="flex">
-                  <button
-                    class="text-white bg-rongta px-8 focus:outline-none hover:bg-gray-700 text-sm uppercase items-center font-semibold"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <!-- Alert Section -->
-
       <div
         id="alert-1"
         class="flex w-full p-4 mb-4 bg-blue-100 rounded-lg dark:bg-blue-200"

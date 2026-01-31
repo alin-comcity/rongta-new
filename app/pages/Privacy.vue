@@ -1,3 +1,17 @@
+<script setup>
+useHead({
+  title: "Privacy Policy",
+  meta: [
+    {
+      hid: "description",
+      name: "Privacy Policy of Rongta BD Website",
+      content:
+        "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from rongta.com.bd",
+    },
+  ],
+});
+</script>
+
 <template>
   <div class="py-12 px-10 container mx-auto">
     <div class="flex flex-col items-center mt-8">
@@ -128,22 +142,3 @@
     </p>
   </div>
 </template>
-
-<script setup>
-import { useHead } from "#imports";
-
-useHead({
-  title: "Rongta Bangladesh | Privacy Policy",
-  meta: [
-    { charset: "utf-8" },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-    {
-      hid: "description",
-      name: "Privacy Policy of Rongta BD Website",
-      content:
-        "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from rongta.com.bd",
-    },
-  ],
-  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
-});
-</script>

@@ -1,3 +1,65 @@
+<script setup>
+import { ref, watch } from "vue";
+import { useRoute, useHead } from "#imports";
+import { useFetch } from "#app";
+
+const route = useRoute();
+const slug = ref(route.params.slug);
+
+const product = ref(null);
+const loading = ref(false);
+const currentTab = ref(1);
+
+useHead(() => ({
+  title: `${slug.value}`,
+  meta: [
+    {
+      name: "description",
+      content: "Home page description",
+    },
+  ],
+}));
+
+const getProduct = async () => {
+  loading.value = true;
+
+  const { data, error } = await useFetch(
+    `https://admindash.comcitybd.com/api/product/${slug.value}`,
+    {
+      key: `product-${slug.value}`,
+    },
+  );
+
+  if (error.value) {
+    console.error("API Error:", error.value);
+    product.value = null;
+  } else {
+    product.value = data.value;
+  }
+
+  loading.value = false;
+};
+
+watch(
+  () => route.params.slug,
+  (newSlug) => {
+    slug.value = newSlug;
+    getProduct();
+  },
+);
+
+getProduct();
+
+function selectTab(tab) {
+  currentTab.value = tab;
+}
+</script>
+
+<style>
+.tabstate {
+  border-bottom: 3px solid #f08200;
+}
+</style>
 <template>
   <div>
     <!-- Loader -->
@@ -69,66 +131,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, watch } from "vue";
-import { useRoute, useHead } from "#imports";
-import { useFetch } from "#app";
-
-const route = useRoute();
-const slug = ref(route.params.slug);
-
-const product = ref(null);
-const loading = ref(false);
-const currentTab = ref(1);
-
-useHead(() => ({
-  title: `Rongta | ${slug.value}`,
-  meta: [
-    {
-      name: "description",
-      content: "Home page description",
-    },
-  ],
-}));
-
-const getProduct = async () => {
-  loading.value = true;
-
-  const { data, error } = await useFetch(
-    `https://admindash.comcitybd.com/api/product/${slug.value}`,
-    {
-      key: `product-${slug.value}`,
-    },
-  );
-
-  if (error.value) {
-    console.error("API Error:", error.value);
-    product.value = null;
-  } else {
-    product.value = data.value;
-  }
-
-  loading.value = false;
-};
-
-watch(
-  () => route.params.slug,
-  (newSlug) => {
-    slug.value = newSlug;
-    getProduct();
-  },
-);
-
-getProduct();
-
-function selectTab(tab) {
-  currentTab.value = tab;
-}
-</script>
-
-<style>
-.tabstate {
-  border-bottom: 3px solid #f08200;
-}
-</style>

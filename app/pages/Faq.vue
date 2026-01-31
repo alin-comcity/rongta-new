@@ -1,3 +1,40 @@
+<script setup>
+useHead({
+  title: "Rongta Bangladesh | FAQs",
+  meta: [
+    {
+      hid: "description",
+      name: "Frequently Asked Questions",
+      content: "Point of Sales Solution in Bangladesh",
+    },
+  ],
+});
+
+// FAQ toggles
+const showFaqOne = ref(false);
+const showFaqTwo = ref(false);
+const showFaqThree = ref(false);
+
+function toggleFaqOne() {
+  showFaqOne.value = !showFaqOne.value;
+}
+
+function toggleFaqTwo() {
+  showFaqTwo.value = !showFaqTwo.value;
+}
+
+function toggleFaqThree() {
+  showFaqThree.value = !showFaqThree.value;
+}
+</script>
+
+<style scoped>
+.faq-item h2 {
+  cursor: pointer;
+  user-select: none;
+}
+</style>
+
 <template>
   <div class="container mx-auto">
     <div class="flex flex-col items-center mt-8">
@@ -73,47 +110,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import { useHead } from "#imports";
-
-// Page meta / head
-useHead({
-  title: "Rongta Bangladesh | FAQs",
-  meta: [
-    { charset: "utf-8" },
-    { name: "viewport", content: "width=device-width, initial-scale=1" },
-    {
-      hid: "description",
-      name: "Frequently Asked Questions",
-      content: "Point of Sales Solution in Bangladesh",
-    },
-  ],
-  link: [{ rel: "icon", type: "image/x-icon", href: "/fav.png" }],
-});
-
-// FAQ toggles
-const showFaqOne = ref(false);
-const showFaqTwo = ref(false);
-const showFaqThree = ref(false);
-
-function toggleFaqOne() {
-  showFaqOne.value = !showFaqOne.value;
-}
-
-function toggleFaqTwo() {
-  showFaqTwo.value = !showFaqTwo.value;
-}
-
-function toggleFaqThree() {
-  showFaqThree.value = !showFaqThree.value;
-}
-</script>
-
-<style scoped>
-.faq-item h2 {
-  cursor: pointer;
-  user-select: none;
-}
-</style>
