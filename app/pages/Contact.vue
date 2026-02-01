@@ -22,7 +22,7 @@ const showThanks = ref(false);
 // send mail function
 const sendMail = async () => {
   try {
-    const response = await $fetch("https://submit-form.com/vl8xicmc", {
+    const response = await $fetch("https://formspree.io/f/mojlvdbj", {
       method: "POST",
       body: {
         name: customername.value,
